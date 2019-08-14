@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+ <body>
+     <div class="container">
+        <div class="row">
+            <h1>The Dojo Message Board </h1>
+        </div>
+        <div class="row">
+                <form action='/messages' method='post'>
+                    Name: <input type='text' name='name'>
+                    Message: <input type='text' name='message'>
+                    <button type="submit">Post Message</button>
+                </form>
+              </div>
+              
+              <% for (const m of messages) { %>
+                <div>
+                  <h2>Name: <%= m.name %></h2> 
+                  <h3> Message: <%= m.message %></h3>
+
+                    <% for (const c of m.comments ) { %>
+                      <h6> Name: <%= c.name %></h6>
+                      <h6> Comment: <%= c.message %></h6>
+
+                      <% } %>
+
+                    <form action='/message/<%= m._id %>' method='post'>
+                        Name: <input type='text' name='name'>
+                        Comments: <input type='text' name='message'>
+                        <button type="submit">Post Comments</button>
+                    </form>
+                  </div>
+                  <% } %>
+        </div>
+    </body>
+ </html>
